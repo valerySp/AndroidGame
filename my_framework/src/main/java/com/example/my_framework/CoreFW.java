@@ -25,6 +25,7 @@ public class CoreFW extends AppCompatActivity {
     private float sceneHeight;
     private boolean stateOnPause;
     private boolean stateOnResume;
+    private TouchListenerFW touchListenerFW;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +56,7 @@ public class CoreFW extends AppCompatActivity {
         stateOnPause=false;
         stateOnResume=false;
 
+        touchListenerFW=new TouchListenerFW(loopFW,sceneWidth,sceneHeight);
         sceneFW=getStartScene();
 
 
@@ -84,6 +86,10 @@ public class CoreFW extends AppCompatActivity {
 
     public GraphicsFW getGraphicsFW() {
         return graphicsFW;
+    }
+
+    public TouchListenerFW getTouchListenerFW(){
+        return touchListenerFW;
     }
 
     public void setScene(SceneFW sceneGame) {
