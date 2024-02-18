@@ -4,7 +4,7 @@ public abstract class SceneFW {
     protected  CoreFW coreFW;
     protected  int sceneWidth;
     protected  int sceneHeight;
-    protected  GraphicsFW graphicsFW;
+    public GraphicsFW graphicsFW;
 
     protected  SceneFW(CoreFW coreFW) {
         this.coreFW = coreFW;
