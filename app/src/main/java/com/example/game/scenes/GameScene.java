@@ -3,6 +3,7 @@ package com.example.game.scenes;
 import android.graphics.Color;
 
 import com.example.game.R;
+import com.example.game.clases.GameManager;
 import com.example.game.generator.GeneratorBackGround;
 import com.example.my_framework.CoreFW;
 import com.example.my_framework.SceneFW;
@@ -11,6 +12,7 @@ public class GameScene extends SceneFW {
 
     GameState gameState;
     GeneratorBackGround gbg;
+    GameManager gameManager;
 
     //Состояния игры
     enum GameState {
@@ -22,6 +24,7 @@ public class GameScene extends SceneFW {
         super(coreFW);
         gameState=GameState.READY;
         gbg=new GeneratorBackGround(sceneWidth,sceneHeight);
+        gameManager=new GameManager(coreFW,sceneWidth,sceneHeight);
     }
 
     @Override
@@ -74,12 +77,12 @@ public class GameScene extends SceneFW {
 
     private void updateStateRunning() {
         gbg.update();
+        gameManager.update();
     }
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
-        graphicsFW.drawText("Scenes playing",
-                250,300,Color.WHITE,60,null);
         gbg.drawing(graphicsFW);
+        gameManager.drawing(coreFW,graphicsFW);
     }
 
     private void updateStateReady() {
