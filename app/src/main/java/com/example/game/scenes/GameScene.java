@@ -11,7 +11,7 @@ import com.example.my_framework.SceneFW;
 public class GameScene extends SceneFW {
 
     GameState gameState;
-    GeneratorBackGround gbg;
+
     GameManager gameManager;
 
     //Состояния игры
@@ -23,7 +23,7 @@ public class GameScene extends SceneFW {
     protected GameScene(CoreFW coreFW) {
         super(coreFW);
         gameState=GameState.READY;
-        gbg=new GeneratorBackGround(sceneWidth,sceneHeight);
+
         gameManager=new GameManager(coreFW,sceneWidth,sceneHeight);
     }
 
@@ -76,12 +76,12 @@ public class GameScene extends SceneFW {
     }
 
     private void updateStateRunning() {
-        gbg.update();
+
         gameManager.update();
     }
     private void drawingStateRunning() {
         graphicsFW.clearScene(Color.BLACK);
-        gbg.drawing(graphicsFW);
+
         gameManager.drawing(coreFW,graphicsFW);
     }
 

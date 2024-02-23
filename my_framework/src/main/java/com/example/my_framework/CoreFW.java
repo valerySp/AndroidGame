@@ -16,7 +16,6 @@ public class CoreFW extends AppCompatActivity {
 
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
-
     private Display display;
     private Point sizeDisplay;
     private Bitmap frameBuffer;
@@ -94,7 +93,7 @@ public class CoreFW extends AppCompatActivity {
 
     public void setScene(SceneFW sceneGame) {
         if (sceneGame == null) {
-            throw new IllegalArgumentException("Не возможно загрзуить сцену");
+            throw new IllegalArgumentException("Невозможно загрузить сцену");
         }
         this.sceneFW.pause();
         this.sceneFW.dispose();

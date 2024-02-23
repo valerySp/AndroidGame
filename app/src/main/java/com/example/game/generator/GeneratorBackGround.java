@@ -20,10 +20,10 @@ public class GeneratorBackGround {
         }
     }
 
-    public void update() {
+    public void update(double speedPlayer) {
         for (int i = 0; i < starArrayList.size(); i++) {
             //Производим обновление каждой звезды в массиве
-            starArrayList.get(i).update();
+            starArrayList.get(i).update(speedPlayer);
         }
     }
 

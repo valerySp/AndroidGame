@@ -64,10 +64,10 @@ public class GraphicsFW {
             inputStream = assetManagerGame.open(fileName);
             textureGame = BitmapFactory.decodeStream(inputStream);
             if (textureGame == null) {
-                throw new RuntimeException("Не возможно загрузить файл" + fileName);
+                throw new RuntimeException("Невозможно загрузить файл" + fileName);
             }
         } catch (IOException e) {
-            throw new RuntimeException("Не возможно загрузить файл" + fileName);
+            throw new RuntimeException("Невозможно загрузить файл" + fileName);
         }
         if (inputStream != null) {
             try {
