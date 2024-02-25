@@ -1,5 +1,6 @@
 package com.example.my_framework;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ public class CoreFW extends AppCompatActivity {
     private final float FRAME_BUFFER_WIDTH = 800;
     private final float FRAME_BUFFER_HEIGHT = 600;
 
+    private AudioFW audioFW;
     private LoopFW loopFW;
     private GraphicsFW graphicsFW;
     private Display display;
@@ -25,6 +27,8 @@ public class CoreFW extends AppCompatActivity {
     private boolean stateOnPause;
     private boolean stateOnResume;
     private TouchListenerFW touchListenerFW;
+    private SharedPreferences sharedPreferences;
+    private final String SETTINGS= "settings";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,20 +55,21 @@ public class CoreFW extends AppCompatActivity {
 
         loopFW = new LoopFW(this, frameBuffer);
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
+        audioFW=new AudioFW(this);
+
 
         stateOnPause=false;
         stateOnResume=false;
 
         touchListenerFW=new TouchListenerFW(loopFW,sceneWidth,sceneHeight);
         sceneFW=getStartScene();
-
+        sharedPreferences=getSharedPreferences(SETTINGS,MODE_PRIVATE);
 
 
         /*audioGame = new AudioGame(this);
         mTouchListenerGame = new TouchListenerGame(mLoopGame, mSceneWidth, mSceneHeight);
         mSceneGame = getStartScene();
         mIsPressedKeyBack = false;*/
-
 
     }
     public void onResume() {
@@ -81,6 +86,10 @@ public class CoreFW extends AppCompatActivity {
         if (isFinishing()) {
             sceneFW.dispose();
         }
+    }
+
+    public AudioFW getAudioFW() {
+        return audioFW;
     }
 
     public GraphicsFW getGraphicsFW() {
@@ -108,5 +117,9 @@ public class CoreFW extends AppCompatActivity {
 
     public SceneFW getStartScene() {
         return sceneFW;
+    }
+
+    public SharedPreferences getSharedPreferences() {
+        return sharedPreferences;
     }
 }

@@ -5,6 +5,8 @@ import android.graphics.Color;
 import com.example.game.R;
 import com.example.game.clases.GameManager;
 import com.example.game.generator.GeneratorBackGround;
+import com.example.game.utilits.SettingsGame;
+import com.example.game.utilits.UtilResource;
 import com.example.my_framework.CoreFW;
 import com.example.my_framework.SceneFW;
 
@@ -23,8 +25,8 @@ public class GameScene extends SceneFW {
     protected GameScene(CoreFW coreFW) {
         super(coreFW);
         gameState=GameState.READY;
-
         gameManager=new GameManager(coreFW,sceneWidth,sceneHeight);
+        UtilResource.musicGame.play(true,2f);
     }
 
     @Override
@@ -62,6 +64,7 @@ public class GameScene extends SceneFW {
     }
 
     private void updateStateGameOver() {
+        SettingsGame.addDistance(gameManager.getPassedDistance());
         if (coreFW.getTouchListenerFW().getTouchUp(250,360,100,35)){
             coreFW.setScene(new GameScene(coreFW));
         }
@@ -114,16 +117,19 @@ public class GameScene extends SceneFW {
 
     @Override
     public void pause() {
-
+        UtilResource.musicGame.stop();
     }
 
     @Override
     public void resume() {
-
+        UtilResource.musicGame.play(true,2f);
     }
 
     @Override
     public void dispose() {
-
+        UtilResource.soundHit.dispose();
+        UtilResource.soundExplode.dispose();
+        UtilResource.soundTouch.dispose();
+        UtilResource.musicGame.dispose();
     }
 }
