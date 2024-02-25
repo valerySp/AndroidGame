@@ -13,6 +13,11 @@ public class LoaderAsserts {
         loadTexture(graphicsFW);
         loadSpritePlayer(graphicsFW);
         loadSpriteEnemy(graphicsFW);
+        loadOther(graphicsFW);
+    }
+
+    private void loadOther(GraphicsFW graphicsFW) {
+        UtilResource.shieldHitEnemy=graphicsFW.newSprite(UtilResource.textureAtlas,0,128,64,64);
     }
 
     private void loadSpriteEnemy(GraphicsFW graphicsFW) {
@@ -26,6 +31,12 @@ public class LoaderAsserts {
     private void loadSpritePlayer(GraphicsFW graphicsFW) {
         UtilResource.spritePlayer=new ArrayList<>();
         UtilResource.spritePlayerBoost=new ArrayList<>();
+        UtilResource.spriteExplosionPlayer=new ArrayList<>();
+
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas,256,256,64,64));
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas,320,256,64,64));
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas,384,256,64,64));
+        UtilResource.spriteExplosionPlayer.add(graphicsFW.newSprite(UtilResource.textureAtlas,448,256,64,64));
 
 
         //добавляем в лист массив человечков из файла texture_atlas.png

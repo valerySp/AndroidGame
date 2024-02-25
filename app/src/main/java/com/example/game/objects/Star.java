@@ -5,14 +5,14 @@ import com.example.my_framework.utilits.UtilRandomFW;
 
 public class Star extends ObjectFW {
 
-    public Star(int sceneWidth,int sceneHeight) {
+    public Star(int sceneWidth, int sceneHeight, int minScreenY) {
         this.maxScreenX=sceneWidth;
         this.maxScreenY=sceneHeight;
         this.minScreenX=0;
-        this.minScreenY=0;
+        this.minScreenY=minScreenY;
         this.speed =2;
         this.x = UtilRandomFW.getCasualNumber(maxScreenX);
-        this.y = UtilRandomFW.getCasualNumber(maxScreenY);
+        this.y = UtilRandomFW.getGap(minScreenY,maxScreenY);
     }
 
     public void update(double speedPlayer){
@@ -20,7 +20,7 @@ public class Star extends ObjectFW {
         x-=speed;
         if(x<0){
             x=maxScreenX;
-            y = UtilRandomFW.getCasualNumber(maxScreenY);
+            y = UtilRandomFW.getGap(minScreenY,maxScreenY);
         }
     }
 

@@ -9,11 +9,13 @@ public class UtilResource {
     public static ArrayList<Bitmap> spritePlayer;
     public static ArrayList<Bitmap> spritePlayerBoost;
     public static ArrayList<Bitmap> spriteEnemy;
+    public static Bitmap shieldHitEnemy;
+    public static ArrayList<Bitmap> spriteExplosionPlayer;
     /*public static ArrayList<Bitmap> sSpritePlayerShieldsOn;
     public static ArrayList<Bitmap> sSpritePlayerShieldsOnBoost;
     public static ArrayList<Bitmap> sSpriteProtector;
-    public static Bitmap sShieldHitEnemy;
-    public static ArrayList<Bitmap> sSpriteExplosionPlayer;
+
+
     public static MusicGame sMainMusicGame;
     public static SoundGame sSoundHit;
     public static SoundGame sSoundExplode;

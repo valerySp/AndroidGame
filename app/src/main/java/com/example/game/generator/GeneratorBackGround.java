@@ -11,11 +11,11 @@ public class GeneratorBackGround {
 
     public ArrayList<Star> starArrayList=new ArrayList<Star>();
 
-    public GeneratorBackGround(int sceneWidth,int sceneHeight){
+    public GeneratorBackGround(int sceneWidth, int sceneHeight, int minScreenY){
         int starsSpeak = 50;//Максимальное количество звезд
         for (int i = 0; i < starsSpeak; i++) {
             //Цикл создает звезды и помещет их в массив
-            Star star = new Star(sceneWidth, sceneHeight);
+            Star star = new Star(sceneWidth, sceneHeight,minScreenY);
             starArrayList.add(star);
         }
     }

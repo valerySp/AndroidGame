@@ -11,8 +11,8 @@ public class ObjectFW {
     protected int y;
     protected double speed;
 
-    protected Rect pHitBox;
-    protected double pRadius;
+    protected Rect hitBox;
+    protected double radius;
     //endregion
 
     //region Get&Set
@@ -73,11 +73,11 @@ public class ObjectFW {
     }
 
     public Rect getHitBox() {
-        return pHitBox;
+        return hitBox;
     }
 
     public double getRadius() {
-        return pRadius;
+        return radius;
     }
     //endregion
 

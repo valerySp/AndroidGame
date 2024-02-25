@@ -10,13 +10,13 @@ public class GeneratorEnemy {
     private int maxScreenY;
     private int minScreenX;
     private int minScreenY;
-    ArrayList<Enemy> enemyArrayList;
+    public ArrayList<Enemy> enemyArrayList;
 
     public GeneratorEnemy(int sceneWidth, int sceneHeight,int minScreenY) {
         this.maxScreenX=sceneWidth;
         this.maxScreenY=sceneHeight;
-        this.minScreenX=minScreenY;
-        this.minScreenY=0;
+        this.minScreenX=0;
+        this.minScreenY=minScreenY;
         enemyArrayList=new ArrayList<>();
     }
     
@@ -42,4 +42,9 @@ public class GeneratorEnemy {
         }
     }
 
+    public void hitPlayer(Enemy enemy) {
+        for (int i = 0; i < enemyArrayList.size(); i++) {
+            enemyArrayList.remove(enemy);
+        }
+    }
 }

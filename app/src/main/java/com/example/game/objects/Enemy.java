@@ -1,5 +1,7 @@
 package com.example.game.objects;
 
+import android.graphics.Rect;
+
 import com.example.game.utilits.UtilResource;
 import com.example.my_framework.AnimationFW;
 import com.example.my_framework.GraphicsFW;
@@ -21,6 +23,7 @@ public class Enemy extends ObjectFW {
         this.minScreenX = 0;
         x = maxScreenX;
         y = UtilRandomFW.getGap(minScreenY, maxScreenY);
+        radius=UtilResource.spritePlayer.get(0).getWidth()/4;
         switch (enemyType){
             case 1:
                 speed=UtilRandomFW.getGap(1,6);
@@ -30,7 +33,7 @@ public class Enemy extends ObjectFW {
                         UtilResource.spriteEnemy.get(3));
                 break;
             case 2:
-                speed=UtilRandomFW.getGap(4,9);
+                speed=UtilRandomFW.getGap(5,11);
                 break;
         }
     }
@@ -48,9 +51,9 @@ public class Enemy extends ObjectFW {
             y = UtilRandomFW.getGap(minScreenY, maxScreenY);
         }
         animEnemy.runAnimation();
-        /*pHitBox = new Rect(pX, pY,
-                ResourceGame.sSpriteEnemy.get(0).getWidth(),
-                ResourceGame.sSpriteEnemy.get(0).getHeight());*/
+
+        hitBox=new Rect(x,y,UtilResource.spritePlayer.get(0).getWidth(),
+                UtilResource.spritePlayer.get(0).getHeight());
     }
 
     public void drawing(GraphicsFW graphicsGame) {
