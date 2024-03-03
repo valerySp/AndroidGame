@@ -15,13 +15,7 @@ import com.example.my_framework.GraphicsFW;
 public class GameManager {
 
     public static final int SPEED_ANIM = 3;
-    private int maxScreenX;
-    private int maxScreenY;
-    private int minScreenX;
-    private int minScreenY;
-    private int passedDistance;
-    private int currentSpeedPlayer;
-    private int currentShieldsPlayer;
+    private int mPassedDistance;
     public static boolean gameOver;
 
     GeneratorBackGround gbg;
@@ -32,14 +26,12 @@ public class GameManager {
 
     public GameManager (CoreFW coreFW,int sceneWidth, int sceneHeight){
         hud=new HUD(coreFW);
-        this.maxScreenX=sceneWidth;
-        this.maxScreenY=sceneHeight;
-        minScreenX=0;
-        minScreenY=hud.getHEIGHT_HUD();
-        gbg=new GeneratorBackGround(sceneWidth,sceneHeight,minScreenY);
-        generatorEnemy=new GeneratorEnemy(sceneWidth,sceneHeight,minScreenY);
-        generatorGifts=new GeneratorGifts(sceneWidth,sceneHeight,minScreenY);
-        mainPlayer=new MainPlayer(coreFW,maxScreenX,maxScreenY,minScreenY);
+        //mMinScreenX=0;
+        int mMinScreenY = hud.getHEIGHT_HUD();
+        gbg=new GeneratorBackGround(sceneWidth,sceneHeight, mMinScreenY);
+        generatorEnemy=new GeneratorEnemy(sceneWidth,sceneHeight, mMinScreenY);
+        generatorGifts=new GeneratorGifts(sceneWidth,sceneHeight, mMinScreenY);
+        mainPlayer=new MainPlayer(coreFW, sceneWidth, sceneHeight, mMinScreenY);
         gameOver=false;
     }
 
@@ -50,11 +42,11 @@ public class GameManager {
         generatorEnemy.update(mainPlayer.getSpeedPlayer());
         generatorGifts.update(mainPlayer.getSpeedPlayer());
 
-        passedDistance+=mainPlayer.getSpeedPlayer();
-        currentSpeedPlayer= (int) mainPlayer.getSpeedPlayer()*60;
-        currentShieldsPlayer=mainPlayer.getShieldsPlayer();
+        mPassedDistance +=mainPlayer.getSpeedPlayer();
+        int mCurrentSpeedPlayer = (int) mainPlayer.getSpeedPlayer() * 60;
+        int mCurrentShieldsPlayer = mainPlayer.getShieldsPlayer();
 
-        hud.update(passedDistance,currentSpeedPlayer,currentShieldsPlayer);
+        hud.update(mPassedDistance, mCurrentSpeedPlayer, mCurrentShieldsPlayer);
 
         checkHit();
 
@@ -86,7 +78,7 @@ public class GameManager {
         hud.drawing(graphicsFW);
     }
 
-    public int getPassedDistance(){
-        return passedDistance;
+    public int getmPassedDistance(){
+        return mPassedDistance;
     }
 }

@@ -24,6 +24,15 @@ public class MainMenuScene extends SceneFW {
             coreFW.setScene(new TopDistance(coreFW));
             UtilResource.soundTouch.play(2f);
         }
+        if (coreFW.getTouchListenerFW().getTouchUp(20,350,100,50)){
+            coreFW.setScene(new SettingsScene(coreFW));
+            UtilResource.soundTouch.play(2f);
+        }
+
+        if (coreFW.getTouchListenerFW().getTouchUp(20,450,100,50)){
+            coreFW.setScene(new ExitScene(coreFW));
+            UtilResource.soundTouch.play(2f);
+        }
     }
 
     @Override

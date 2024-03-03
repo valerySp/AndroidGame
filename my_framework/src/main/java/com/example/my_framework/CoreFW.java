@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.WindowManager;
 
 import androidx.annotation.Nullable;
@@ -29,6 +30,7 @@ public class CoreFW extends AppCompatActivity {
     private TouchListenerFW touchListenerFW;
     private SharedPreferences sharedPreferences;
     private final String SETTINGS= "settings";
+    private boolean isPressedKeyBack;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,6 +46,14 @@ public class CoreFW extends AppCompatActivity {
 
     }
 
+    public boolean isPressedKeyBack() {
+        return isPressedKeyBack;
+    }
+
+    public void setPressedKeyBack(boolean pressedKeyBack) {
+        isPressedKeyBack = pressedKeyBack;
+    }
+
     public void init(){
         sizeDisplay=new Point();
         display=getWindowManager().getDefaultDisplay();
@@ -57,19 +67,15 @@ public class CoreFW extends AppCompatActivity {
         graphicsFW = new GraphicsFW(getAssets(), frameBuffer);
         audioFW=new AudioFW(this);
 
-
         stateOnPause=false;
         stateOnResume=false;
+        isPressedKeyBack = false;
 
         touchListenerFW=new TouchListenerFW(loopFW,sceneWidth,sceneHeight);
         sceneFW=getStartScene();
         sharedPreferences=getSharedPreferences(SETTINGS,MODE_PRIVATE);
 
 
-        /*audioGame = new AudioGame(this);
-        mTouchListenerGame = new TouchListenerGame(mLoopGame, mSceneWidth, mSceneHeight);
-        mSceneGame = getStartScene();
-        mIsPressedKeyBack = false;*/
 
     }
     public void onResume() {
@@ -88,6 +94,13 @@ public class CoreFW extends AppCompatActivity {
         }
     }
 
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            isPressedKeyBack = true;
+            return true;
+        }
+        return false;
+    }
     public AudioFW getAudioFW() {
         return audioFW;
     }

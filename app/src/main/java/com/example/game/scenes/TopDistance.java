@@ -38,7 +38,7 @@ public class TopDistance extends SceneFW {
     //region @Override
     @Override
     public void pause() {
-
+        SettingsGame.saveSettings(coreFW);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class TopDistance extends SceneFW {
 
     @Override
     public void dispose() {
-
+        SettingsGame.saveSettings(coreFW);
     }
 }

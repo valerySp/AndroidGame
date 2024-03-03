@@ -1,22 +1,58 @@
-package com.example.game.clases;
+package com.example.game.tasks;
 
+import android.os.AsyncTask;
 
+import com.example.game.interfaces.TaskComplete;
+import com.example.game.scenes.LoaderResourceScene;
+import com.example.game.utilits.SettingsGame;
+import com.example.game.utilits.UtilResource;
 import com.example.my_framework.CoreFW;
 import com.example.my_framework.GraphicsFW;
-import com.example.game.utilits.UtilResource;
 
 import java.util.ArrayList;
 
-//Загрузчик картинок
-public class LoaderAsserts {
-    public LoaderAsserts(CoreFW coreFW, GraphicsFW graphicsFW){
-        loadTexture(graphicsFW);
-        loadSpritePlayer(graphicsFW);
-        loadSpriteEnemy(graphicsFW);
-        loadOther(graphicsFW);
-        loadAudio(coreFW);
-        loadSpritePlayerShieldsOn(graphicsFW);
-        loadGifts(graphicsFW);
+public class LoaderTask extends AsyncTask<Void,Integer,Void> {
+
+    private CoreFW mCoreFw;
+    private TaskComplete mTaskComplete;
+
+    public LoaderTask(CoreFW coreFW, TaskComplete taskComplete){
+        mCoreFw=coreFW;
+        mTaskComplete=taskComplete;
+    }
+
+    @Override
+    protected Void doInBackground(Void... voids) {
+        loaderAsserts();
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        LoaderResourceScene.setProgressLoader(values[0]);
+    }
+
+    @Override
+    protected void onPostExecute(Void unused) {
+        super.onPostExecute(unused);
+        mTaskComplete.onComplete();
+    }
+
+    private void loaderAsserts(){
+        loadTexture(mCoreFw.getGraphicsFW());
+        publishProgress(100);
+        loadSpritePlayer(mCoreFw.getGraphicsFW());
+        publishProgress(300);
+        loadSpriteEnemy(mCoreFw.getGraphicsFW());
+        publishProgress(500);
+        loadOther(mCoreFw.getGraphicsFW());
+        publishProgress(600);
+        loadAudio(mCoreFw);
+        loadSpritePlayerShieldsOn(mCoreFw.getGraphicsFW());
+        publishProgress(800);
+        loadGifts(mCoreFw.getGraphicsFW());
+        publishProgress(800);
     }
 
     private void loadGifts(GraphicsFW graphicsFW) {
@@ -56,6 +92,7 @@ public class LoaderAsserts {
 
     private void loadOther(GraphicsFW graphicsFW) {
         UtilResource.shieldHitEnemy=graphicsFW.newSprite(UtilResource.textureAtlas,0,128,64,64);
+        SettingsGame.loadSettings(mCoreFw);
     }
 
     private void loadSpriteEnemy(GraphicsFW graphicsFW) {
